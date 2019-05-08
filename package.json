@@ -1,5 +1,15 @@
 {
   "name": "time-to-answear",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "5.8.1",
+    "bootstrap": "4.3.1",
+    "jquery": "3.3.1",
+    "jquery.easing": "1.4.1"
+  },
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:augustoscher/time-to-answear.git",
+  "author": "Augusto Scher <augustoscher@gmail.com>",
+  "license": "MIT"
 }
