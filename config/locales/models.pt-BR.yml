@@ -13,7 +13,7 @@ pt-BR:
         email: Email
         created_at: Criado em
         updated_at: Atualizado em
-      profile:
+      user:
         id: Código
         email: Email
         created_at: Criado em
