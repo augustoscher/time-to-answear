@@ -40,9 +40,10 @@
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item">
-          <a class="nav-link" href="index.html">
+          <%= link_to admins_backoffice_welcome_index_path, class:"nav-link" do %>
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
+          <% end %>
         </li>
 
         <!-- Divider -->
@@ -62,8 +63,10 @@
           <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
               <h6 class="collapse-header">Custom Actions:</h6>
-              <a class="collapse-item" href="buttons.html">Buttons</a>
-              <a class="collapse-item" href="cards.html">Cards</a>
+              <%= link_to admins_backoffice_admins_path, class:"collapse-item" do %>
+                List All
+              <% end %>
+              <a class="collapse-item" href="cards.html">New Adm</a>
             </div>
           </div>
         </li>
@@ -318,7 +321,6 @@
           <div class="container-fluid">
 
             <!-- Page Heading -->
-            <h1 class="h3 mb-4 text-gray-800">Layout Backoffice - Admin</h1>
             <%= yield %>
 
           </div>
