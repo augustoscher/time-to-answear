@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   namespace :admins_backoffice do
     get 'welcome/index' #dashboard
-    resources :admins, only: [:index, :edit] #administradores
+    resources :admins, only: [:index, :edit, :update] #administradores
   end
   devise_for :users
   devise_for :admins
