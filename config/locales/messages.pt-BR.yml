@@ -1,0 +1,11 @@
+pt-BR:
+  labels:
+    actions: Ações
+    questions: Questões
+    subjects: Assuntos
+    admins: Administradores
+  all:
+    subjects: Todos Assuntos
+    questions: Todas Questões
+    admins: Todos Administradores
+    
