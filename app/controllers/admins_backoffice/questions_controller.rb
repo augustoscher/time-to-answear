@@ -44,7 +44,7 @@ class AdminsBackoffice::QuestionsController < AdminsBackofficeController
     private
 
     def set_subject_options
-        @subject_options = Subject.all.pluck(:description, :id)
+        @subject_options = Subject.all
       end
     
     def set_question
