@@ -3,7 +3,8 @@ class AdminsBackoffice::QuestionsController < AdminsBackofficeController
     before_action :set_subject_options, only: [:create, :new, :edit, :update] 
 
     def index
-      @questions = Question.all.order(:id).page(params[:page])
+      #includes evita fazer mais uma query pra buscar a descriçao dos subjects
+      @questions = Question.includes(:subject).order(:id).page(params[:page])
     end
   
     def new 
