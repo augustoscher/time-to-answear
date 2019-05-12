@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     get 'welcome/index' #dashboard
     resources :admins
     resources :subjects
+    resources :questions
   end
   devise_for :users
   devise_for :admins
