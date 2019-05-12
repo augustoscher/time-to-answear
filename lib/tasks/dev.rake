@@ -16,6 +16,7 @@ namespace :dev do
       %x(rails dev:add_admins)
       %x(rails dev:add_users)
       %x(rails dev:add_subjects)
+      %x(rails dev:add_questions)
     else 
       puts "You're not in development"
     end
@@ -59,6 +60,20 @@ namespace :dev do
       file = File.open("#{DEFAULT_FILE_PATH}/subjects.txt")
       file.each do |line|
         Subject.create!({description: line.strip})
+      end
+    end
+  end
+
+  desc "Adding Questions"
+  task add_questions: :environment do
+    show_spinner("Adding Questions...") do
+      Subject.all.each do |subject|
+        rand(5..10).times do |i| 
+          Question.create!(
+            description: "#{Faker::Lorem.paragraph} #{Faker::Lorem.question}",
+            subject: subject
+          )
+        end
       end
     end
   end
