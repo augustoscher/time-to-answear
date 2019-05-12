@@ -1,4 +1,7 @@
 namespace :dev do
+
+  DEFAULT_FILE_PATH = File.join(Rails.root, 'lib', 'tmp')
+
   desc "Setup development environment"
   task setup: :environment do
     if Rails.env.development?
@@ -12,6 +15,7 @@ namespace :dev do
       #Precisa ser em ordem
       %x(rails dev:add_admins)
       %x(rails dev:add_users)
+      %x(rails dev:add_subjects)
     else 
       puts "You're not in development"
     end
@@ -46,6 +50,16 @@ namespace :dev do
       users.each do |user| 
         User.create!(user)
       end 
+    end
+  end
+
+  desc "Adding Subjects"
+  task add_subjects: :environment do
+    show_spinner("Adding Subjetcs...") do
+      file = File.open("#{DEFAULT_FILE_PATH}/subjects.txt")
+      file.each do |line|
+        Subject.create!({description: line.strip})
+      end
     end
   end
 
