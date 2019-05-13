@@ -69,10 +69,13 @@ namespace :dev do
     show_spinner("Adding Questions...") do
       Subject.all.each do |subject|
         rand(5..10).times do |i| 
-          Question.create!(
-            description: "#{Faker::Lorem.paragraph} #{Faker::Lorem.question}",
-            subject: subject
-          )
+          params = create_question_params
+          answers_array = params[:question][:answers_attributes]
+
+          add_answers(answers_array)
+          set_true_answer(answers_array)
+
+          Question.create!(params[:question])
         end
       end
     end
@@ -85,6 +88,29 @@ namespace :dev do
       #esse comando executa o comando passado pelo bloco do end/{}
       yield
       spinner.success("(#{msg_end})")
+    end
+
+    def create_question_params(subject = Subject.all.sample)
+      { question: {
+        description: "#{Faker::Lorem.paragraph} #{Faker::Lorem.question}",
+        subject: subject,
+        answers_attributes: []
+      }}
+    end
+
+    def create_answer(isCorrect = false)
+      {description: "#{Faker::Lorem.sentence}", correct: isCorrect }
+    end
+
+    def add_answers(answers_array = [])
+      rand(2..5).times do |j|
+        answers_array.push(create_answer(false))
+      end
+    end
+
+    def set_true_answer(answers_array = [])
+      index_random_answer = rand(answers_array.size)
+      answers_array[index_random_answer] = create_answer(true)
     end
   end
 
