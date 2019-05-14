@@ -24,6 +24,12 @@
         <%# <%= form.select :subject, class:"form-control", placeholder:"Subject" %>
         <%= form.collection_select(:subject_id, @subject_options, :id, :description, {}, {class:"form-control"})%>
       </div>
+      <div id="answers">
+        <%= form.fields_for :answers do |answer| %>
+          <%= render partial: "answer_fields", locals: { f: answer } %>
+        <% end %>
+        <%= link_to_add_association 'Add', form, :answers %>
+      </div>
       <hr>
       <button type="submit" class="btn btn-primary btn-user btn-block">Save</button>
     <% end %>

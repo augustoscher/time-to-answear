@@ -1,5 +1,6 @@
 class AdminsBackoffice::AdminsController < AdminsBackofficeController
   before_action :set_admin, only: [:edit,:update, :destroy]
+  # before_action :verify_password, only: [:update]
 
   def index
     @admins = Admin.all.page(params[:page])
@@ -48,6 +49,13 @@ class AdminsBackoffice::AdminsController < AdminsBackofficeController
 
   def params_admin
     params_admin = params.require(:admin).permit(:email, :password, :password_confirmation)
+  end
+
+  def verify_password
+    #não obrigar a informar senha e confirmação ao atualizar admin
+    if params[:admin][:password].blank? && params[:admin][:password_confirmation].blank?
+      params[:admin].extract!(:password, :password_confirmation)
+    end
   end
 
 end
