@@ -4,13 +4,16 @@ class ApplicationController < ActionController::Base
   protected
 
   def layout_by_resource
-      puts "===== #{devise_controller?}"
-      puts "===== #{resource_class}"
-      if devise_controller? && resource_class == Admin
-          "admin_devise"
-      else 
-          "application"
-      end
+
+    devise_controller? ? "#{resource_class.to_s.downcase}_devise" : "application"
+
+    # if devise_controller? && resource_class == Admin
+    #   "admin_devise"
+    # elsif devise_controller? && resource_class == User
+    #   "user_devise"
+    # else 
+    #   "application"
+    # end
   end
 
 end
