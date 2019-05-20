@@ -17,6 +17,7 @@ namespace :dev do
       %x(rails dev:add_users)
       %x(rails dev:add_subjects)
       %x(rails dev:add_questions)
+      %x(rails dev:reset_subject_counter)
     else 
       puts "You're not in development"
     end
@@ -77,6 +78,15 @@ namespace :dev do
 
           Question.create!(params[:question])
         end
+      end
+    end
+  end
+
+  desc "Reset subject counter"
+  task reset_subject_counter: :environment do
+    show_spinner("Reseting subject counter...") do
+      Subject.all.each do |subject|
+        Subject.reset_counters(subject.id, :questions)
       end
     end
   end
