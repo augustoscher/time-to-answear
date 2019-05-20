@@ -27,7 +27,7 @@
 </div>
 
 <% @questions.each do |q| %>
-  <%= form_with url: site_answer_path, local: true do |form| %>
+  <%= form_with url: site_answer_path do |form| %>
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title"><%= "#{q.id} - #{q.description}"%></h3>
@@ -47,7 +47,7 @@
             </li>
           <% end %>
           <li style="list-style:none;">
-            <%= form.submit "Check", class:"btn btn-default" %>
+            <%= form.submit "Check", class:"btn btn-default", id: "submit_#{q.id}" %>
           </li>
         <ul>
       </div>
