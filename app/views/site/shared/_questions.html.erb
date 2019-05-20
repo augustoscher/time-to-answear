@@ -1,11 +1,5 @@
 <div class="jumbotron">
-  <div>
-    <% unless params[:term]%>
-      <h3>Last added questions...</h3>
-    <% else %>
-      <h3>Results for "<%= params[:term]%>"</h3>
-    <% end %>
-  </div>
+  <h4><%= msg_questions%></h4>
   <%# <p>Find me in app/views/site/welcome/index.html.erb</p> %>
 
   <!-- 
@@ -30,7 +24,12 @@
   <%= form_with url: site_answer_path do |form| %>
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title"><%= "#{q.id} - #{q.description}"%></h3>
+        <h3 class="panel-title">
+          <span class="label label-info" style="margin-right: 5px">
+            <%= link_to q.subject.description, site_search_subject_path(q.subject_id, q.subject.description), style:"color: white;" %>
+          </span>
+          <%= "#{q.id} - #{q.description}"%>
+        </h3>
       </div>
       <div class="panel-body">
         <ul>

@@ -13,14 +13,22 @@ class Question < ApplicationRecord
 
   #scopes são pesquisas no banco de dados. Retorna sempre um ActiveRelation
   scope :_search_, ->(page, term){
-    includes(:answers)
+    includes(:answers, :subject)
     .where("lower(description) LIKE ?", "%#{term.downcase}%")
     .page(page)
   }
 
+  scope :_search_subject_, ->(page, subject_id){
+    includes(:answers, :subject)
+    .where(subject_id: subject_id)
+    .page(page)
+  }
+
   scope :last_questions, ->(page){
-    includes(:answers)
+    includes(:answers, :subject)
     .order('created_at desc')
     .page(page)
   }
+
+
 end
