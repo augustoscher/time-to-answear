@@ -70,9 +70,16 @@
       </nav>
 
       <div class="jumbotron">
-        <h1>Site::Welcome#index</h1>
-        <p>Find me in app/views/site/welcome/index.html.erb</p>
+        <div>
+          <% unless params[:term]%>
+            <h3>Last added questions...</h3>
+          <% else %>
+            <h3>Results for "<%= params[:term]%>"</h3>
+          <% end %>
+        </div>
+        <%# <p>Find me in app/views/site/welcome/index.html.erb</p> %>
 
+        <!-- 
         <div>
           <% if user_signed_in? %>
             <p>Usuario logado / <%= current_user.email %></p>
@@ -88,6 +95,7 @@
           <% end %>
         </div>
       </div>
+      -->
       <%= yield %>
       
     </div> <!-- /container -->
