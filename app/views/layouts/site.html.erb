@@ -34,6 +34,12 @@
           </div>
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav"></ul>
+            <%= form_with(url: site_search_path, local: true, method: :get, class:"navbar-form navbar-left") do |form| %>
+              <div class="form-group">
+                <%= form.text_field :term, class:"form-control", placeholder:"Search" %>
+              </div>
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            <% end %>
             <ul class="nav navbar-nav navbar-right">
               <%# <li class="active"><a href="./">Default <span class="sr-only">(current)</span></a></li> %>
               <% unless user_signed_in? %>
