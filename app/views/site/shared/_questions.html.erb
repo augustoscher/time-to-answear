@@ -1,19 +1,58 @@
+<div class="jumbotron">
+  <div>
+    <% unless params[:term]%>
+      <h3>Last added questions...</h3>
+    <% else %>
+      <h3>Results for "<%= params[:term]%>"</h3>
+    <% end %>
+  </div>
+  <%# <p>Find me in app/views/site/welcome/index.html.erb</p> %>
+
+  <!-- 
+  <div>
+    <% if user_signed_in? %>
+      <p>Usuario logado / <%= current_user.email %></p>
+    <% else %>
+      <p>Usuario deslogado</p>
+    <% end %>
+  </div>
+  <div>
+    <% if admin_signed_in? %>
+      <p>Admin logado / <%= current_admin.email %></p>
+    <% else %>
+      <p>Admin deslogado</p>
+    <% end %>
+  </div>
+  -->
+</div>
 
 <% @questions.each do |q| %>
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h3 class="panel-title"><%= "#{q.id} - #{q.description}"%></h3>
+  <%= form_with url: site_answer_path, local: true do |form| %>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= "#{q.id} - #{q.description}"%></h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+          <% i = 0%>
+          <% q.answers.each do |a| %>
+            <li style="list-style:none;">
+              <div class="radio">
+                <label>
+                  <%= radio_button_tag 'answer_id', a.id %>
+                  <% i += 1 %>
+                  <%= "#{i} - #{a.description}" %>
+                </label>
+              </div>
+            </li>
+          <% end %>
+          <li style="list-style:none;">
+            <%= form.submit "Check", class:"btn btn-default" %>
+          </li>
+        <ul>
+      </div>
     </div>
-    <div class="panel-body">
-      <ul>
-        <% i = 0%>
-        <% q.answers.each do |a| %>
-          <% i += 1%>
-          <li><%= "#{i} - #{a.description}" %></li>
-        <% end %>
-      <ul>
-    </div>
-  </div>
+  <% end %>
 <% end %>
 <div class="text-center">
   <%= paginate @questions%>

@@ -10,8 +10,9 @@ Rails.application.routes.draw do
   devise_for :admins
 
   namespace :site do
-    get 'welcome/index'
-    get 'search', to: 'search#questions'
+    get  'welcome/index'
+    get  'search', to: 'search#questions'
+    post 'answer', to: 'answer#question'
   end
   namespace :users_backoffice do
     get 'welcome/index'
